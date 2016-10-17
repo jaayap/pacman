@@ -5,15 +5,15 @@
 
 class Game
 {
-	//Représentation du niveau
+	//Représentation du niveau.
 	char Matrice[31][28]; //2 : cases vides, 1 : mur, 2 : pas de bille, 3 : sortie,	8 : bille speciale
 
 	int mode = 1; //1 : normal / 2 : special
-	bool pause = true; // jeu en pause
-	bool play = false; //permet de lancer le jeu
+	bool pause = true; // jeu en pause.
+	bool play = false; // permet de lancer le jeu.
 	bool joueur_win = false, joueur_lose = false;
-	bool sortie = false; // enregistre si la case de sortie est affiché ou non 
-	std::string choixMatrice; //choix de l'utilisateur
+	bool sortie = false; // enregistre si la case de sortie est affiché ou non .
+	std::string choixMatrice; // choix de l'utilisateur.
 
 public:int matriceEnCours=1;//permet dafficher la bonne texture
 
