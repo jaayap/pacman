@@ -49,7 +49,7 @@ void main(void)
 	//glutIgnoreKeyRepeat(1);
 	//glutFullScreen();
 
-	// Gestion des événements
+	
 	glutDisplayFunc(LabyAffichage);
 	glutReshapeFunc(LabyRedim);
 	glutKeyboardFunc(TraitementClavierASCII);

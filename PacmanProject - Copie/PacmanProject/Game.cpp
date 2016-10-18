@@ -85,8 +85,8 @@ void Game::JouerSonGagner() {
 void Game::initialiserMatrice(string nomFile) {
 	ifstream file(nomFile);
 	if (file.is_open()) {
-		for (int i = 0; i < 31; i++) {
-			for (int j = 0; j < 28; j++) {
+		for (int i = 0; i < NBLIGNES; i++) {
+			for (int j = 0; j < NBCOLONNES; j++) {
 				file >> Matrice[i][j];
 			}
 		}
@@ -274,7 +274,7 @@ void Game::AfficherCommandes() {
 //Test si l'on peut aller dans la case x,y
 bool Game::CaseLibre(int x, int y) //ligne colonne
 {
-	if (x < 0 || x > 31 || y < 0 || y > 28) return false; // case existante.
+	if (x < 0 || x > 31 || y < 0 || y > 28) return false; // case inexistante.
 
 	if (Matrice[x][y] != '1') { // la case n'est pas un mur.
 		return true;

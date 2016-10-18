@@ -23,6 +23,7 @@ Pacman::Pacman(int positionDepart_x, int PositionDepart_y) : Personnage(x, y)
 Pacman::~Pacman()
 {
 }
+
 //Getters
 int Pacman::getScore()
 {
@@ -106,17 +107,13 @@ void Pacman::dessiner() {
 		case 1:
 			if (ancienne_direction == 4) { dessinerVersHaut(); hautBis = false; }
 			else if (ancienne_direction == 3) { dessinerVersHautBis(); hautBis = true; }
-			else if (hautBis) {
-				dessinerVersHautBis();
-			}
+			else if (hautBis) dessinerVersHautBis();		
 			else dessinerVersHaut();
 			break;
 		case 2:
 			if (ancienne_direction == 4) { dessinerVersBas(); basBis = false; }
 			else if (ancienne_direction == 3) { dessinerVersBasBis(); basBis = true; }
-			else if (basBis) {
-				dessinerVersBasBis();
-			}
+			else if (basBis) dessinerVersBasBis();
 			else dessinerVersBas();
 			break;
 		case 3:
@@ -131,18 +128,17 @@ void Pacman::dessiner() {
 void Pacman::dessinerVersGauche()
 {
 	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	glEnable(GL_TEXTURE_2D);
-	glBindTexture(GL_TEXTURE_2D, texture[2]);
-	glBegin(GL_QUADS);
-	glColor3d(1.0, 1.0, 1.0);
-	glTexCoord2f(0.0f, 0.0f); glVertex2d(x + 1, y + 1);//top left
-	glTexCoord2f(1.0f, 0.0f); glVertex2d(x, y + 1);//bottom left	
-	glTexCoord2f(1.0f, 1.0f); glVertex2d(x, y);//bottom right	
-	glTexCoord2f(0.0f, 1.0f); glVertex2d(x + 1, y);	//top right	
-	glEnd();
-	
-	glDisable(GL_TEXTURE_2D); 
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		glEnable(GL_TEXTURE_2D);
+			glBindTexture(GL_TEXTURE_2D, texture[2]);
+			glBegin(GL_QUADS);
+			glColor3d(1.0, 1.0, 1.0);
+				glTexCoord2f(0.0f, 0.0f); glVertex2d(x + 1, y + 1);//top left
+				glTexCoord2f(1.0f, 0.0f); glVertex2d(x, y + 1);//bottom left	
+				glTexCoord2f(1.0f, 1.0f); glVertex2d(x, y);//bottom right	
+				glTexCoord2f(0.0f, 1.0f); glVertex2d(x + 1, y);	//top right	
+			glEnd();
+		glDisable(GL_TEXTURE_2D); 
 	glDisable(GL_BLEND);
 	ancienne_direction = 3;
 }
@@ -150,18 +146,17 @@ void Pacman::dessinerVersGauche()
 void Pacman::dessinerVersDroite()
 {
 	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	glEnable(GL_TEXTURE_2D);
-	glBindTexture(GL_TEXTURE_2D, texture[2]);
-	glBegin(GL_QUADS);
-	glColor3d(1.0, 1.0, 1.0);
-	glTexCoord2f(1.0f, 0.0f); glVertex2d(x + 1, y + 1);//top left
-	glTexCoord2f(0.0f, 0.0f); glVertex2d(x, y + 1);//bottom left	
-	glTexCoord2f(0.0f, 1.0f); glVertex2d(x, y);//bottom right	
-	glTexCoord2f(1.0f, 1.0f); glVertex2d(x + 1, y);	//top right	
-	glEnd();
-
-	glDisable(GL_TEXTURE_2D);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		glEnable(GL_TEXTURE_2D);
+			glBindTexture(GL_TEXTURE_2D, texture[2]);
+			glBegin(GL_QUADS);
+				glColor3d(1.0, 1.0, 1.0);
+				glTexCoord2f(1.0f, 0.0f); glVertex2d(x + 1, y + 1);//top left
+				glTexCoord2f(0.0f, 0.0f); glVertex2d(x, y + 1);//bottom left	
+				glTexCoord2f(0.0f, 1.0f); glVertex2d(x, y);//bottom right	
+				glTexCoord2f(1.0f, 1.0f); glVertex2d(x + 1, y);	//top right	
+			glEnd();
+			glDisable(GL_TEXTURE_2D);
 	glDisable(GL_BLEND);
 	ancienne_direction = 4;
 }
@@ -169,17 +164,17 @@ void Pacman::dessinerVersDroite()
 void Pacman::dessinerVersBas()
 {
 	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	glEnable(GL_TEXTURE_2D);
-	glBindTexture(GL_TEXTURE_2D, texture[2]);
-	glBegin(GL_QUADS);
-	glColor3d(1.0, 1.0, 1.0);
-	glTexCoord2f(1.0f, 1.0f); glVertex2d(x + 1, y + 1);//top left
-	glTexCoord2f(1.0f, 0.0f); glVertex2d(x, y + 1);//bottom left	
-	glTexCoord2f(0.0f, 0.0f); glVertex2d(x, y);//bottom right	
-	glTexCoord2f(0.0f, 1.0f); glVertex2d(x + 1, y);	//top right	
-	glEnd();
-	glDisable(GL_TEXTURE_2D);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		glEnable(GL_TEXTURE_2D);
+			glBindTexture(GL_TEXTURE_2D, texture[2]);
+			glBegin(GL_QUADS);
+			glColor3d(1.0, 1.0, 1.0);
+				glTexCoord2f(1.0f, 1.0f); glVertex2d(x + 1, y + 1);//top left
+				glTexCoord2f(1.0f, 0.0f); glVertex2d(x, y + 1);//bottom left	
+				glTexCoord2f(0.0f, 0.0f); glVertex2d(x, y);//bottom right	
+				glTexCoord2f(0.0f, 1.0f); glVertex2d(x + 1, y);	//top right	
+			glEnd();
+		glDisable(GL_TEXTURE_2D);
 	glDisable(GL_BLEND);
 	ancienne_direction = 2;
 }
