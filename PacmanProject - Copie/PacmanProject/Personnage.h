@@ -2,7 +2,7 @@
 class Personnage
 {
 	public: int x, y; //Position
-	public:bool vivant=true;
+	public: bool vivant=true;
 
 public:
 	Personnage(int xDepart, int yDepart);
