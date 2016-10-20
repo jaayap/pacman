@@ -30,7 +30,7 @@ Game::~Game()
 {
 }
 
-//Getters
+//Getters.
 int Game::getMode() {
 	return this->mode;
 }
@@ -51,7 +51,7 @@ bool Game::getJoueurLose() {
 	return this->joueur_lose;
 }
 
-//Setters
+//Setters.
 void Game::setMode(int mode) {
 	this->mode = mode;
 }
@@ -64,7 +64,7 @@ void Game::setPlay(bool play) {
 	this->play = play;
 }
 
-//Fonction pour les bruitages
+//Fonction pour les bruitages.
 void Game::JouerSonDepart() {	
 	PlaySound(TEXT("sons//pacman_beginning.wav"), NULL, SND_SYNC);// ASYNC ou SYNC : bloque le jeu	
 }
@@ -81,7 +81,7 @@ void Game::JouerSonGagner() {
 	PlaySound(TEXT("sons//pacman_death.wav"), NULL, SND_SYNC);// ASYNC ou SYNC : bloque le jeu
 }
 
-//Fonction qui fait le lien entre le fichier et la matrice
+//Fonction qui fait le lien entre le fichier et la matrice.
 void Game::initialiserMatrice(string nomFile) {
 	ifstream file(nomFile);
 	if (file.is_open()) {
@@ -96,7 +96,7 @@ void Game::initialiserMatrice(string nomFile) {
 
 //Fonctions d'Affichages :
 
-//fonction qui permet d'appliquer une texture
+//fonction qui permet d'appliquer une texture.
 void Game::AfficherTexture(int numeroTexture, bool transparent) {
 	if (transparent) {
 		glEnable(GL_BLEND);
@@ -104,7 +104,7 @@ void Game::AfficherTexture(int numeroTexture, bool transparent) {
 			glEnable(GL_TEXTURE_2D);
 				glBindTexture(GL_TEXTURE_2D, texture[numeroTexture]);
 					glBegin(GL_QUADS);
-						glColor3d(1.0, 1.0, 1.0);//important
+						glColor3d(1.0, 1.0, 1.0);
 						glTexCoord2f(0.0f, 1.0f); glVertex2d(0, 0);//top left
 						glTexCoord2f(1.0f, 1.0f); glVertex2d(28, 0);//bottom left	
 						glTexCoord2f(1.0f, 0.0f); glVertex2d(28, 31);//bottom right	
@@ -117,7 +117,7 @@ void Game::AfficherTexture(int numeroTexture, bool transparent) {
 		glEnable(GL_TEXTURE_2D);
 			glBindTexture(GL_TEXTURE_2D, texture[numeroTexture]);
 			glBegin(GL_QUADS);
-				glColor3d(1.0, 1.0, 1.0);//important
+				glColor3d(1.0, 1.0, 1.0);
 				glTexCoord2f(0.0f, 1.0f); glVertex2d(0, 0);//top left
 				glTexCoord2f(1.0f, 1.0f); glVertex2d(28, 0);//bottom left	
 				glTexCoord2f(1.0f, 0.0f); glVertex2d(28, 31);//bottom right	
@@ -127,10 +127,10 @@ void Game::AfficherTexture(int numeroTexture, bool transparent) {
 	}
 }
 
-//Affiche les differents elements du niveau
+//Affiche les differents elements du niveau.
 void Game::DessinerNiveau()
 {
-	//Affichage du fond
+	//Affichage du fond.
 	glColor3d(0.0, 0.0, 1.0);
 	
 	if (matriceEnCours == 1) { //Niveau 1
@@ -142,7 +142,7 @@ void Game::DessinerNiveau()
 
 	for (int i = 0; i < NBLIGNES; i++) {
 		for (int j = 0; j < NBCOLONNES; j++) {
-			//Affichage des "pac-gommes"
+			//Affichage des "pac-gommes".
 			if (Matrice[i][j] == '0' || Matrice[i][j] == '5') { 	
 					glPushMatrix();
 					glTranslatef(j + 0.5, i + 0.5, 0);
@@ -159,7 +159,7 @@ void Game::DessinerNiveau()
 					glPopMatrix();
 			}
 
-			//Affichage de la case sortie
+			//Affichage de la case sortie.
 			if (Matrice[i][j] == '3') {
 				glEnable(GL_BLEND);
 					glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -179,7 +179,7 @@ void Game::DessinerNiveau()
 	}
 }
 
-//Dessine tout les personnages 
+//Dessine tout les personnages.
 void Game::DessinerPerso() {
 	pacman.dessiner();
 	clyde.dessiner();
@@ -188,7 +188,7 @@ void Game::DessinerPerso() {
 	blinky.dessiner();
 }
 
-//fonction utile pour l'affichage de texte
+//fonction utile pour l'affichage de texte.
 void vBitmapOutput(int x, int y, char *string, void *font)
 {
 	int len, i; // len donne la longueur de la chaîne de caracteres.
@@ -202,9 +202,9 @@ void vBitmapOutput(int x, int y, char *string, void *font)
 void Game::AfficherScore() {
 	glColor3d(0.0, 0.0, 0.0);
 
-	//Affichage du libelle
+	//Affichage du libelle.
 	vBitmapOutput(0, 31, "Score : ", GLUT_BITMAP_HELVETICA_18);
-	//Affichage de l'entier score
+	//Affichage de l'entier score.
 	char buffer[10] = { '\0' };
 	sprintf_s(buffer, "%d", pacman.getScore()); //on convertit l'entier en chaîne de caractere.
 	vBitmapOutput(3, 31, buffer, GLUT_BITMAP_HELVETICA_18);
@@ -214,32 +214,31 @@ void Game::AfficherVies() {
 	AfficherTexture(2, true);
 }
 
-//Affiche le menu
+//Affiche le menu.
 void Game::AfficherMenu() {
 	AfficherTexture(13,false);
 }
 
-//Affiche l'interface du jeu
+// Affiche l'interface/le fond du jeu.
 void Game::AfficherFond() {
 	glClearColor(0.54, 0.0, 0.54, 1.0);
 	glClear(GL_COLOR_BUFFER_BIT);
 
 	AfficherTexture(11, false);
-
 }
 
-//Determine ou doit se positionner la case de sortie
+// Determine ou doit se positionner la case de sortie.
 void Game::AfficheCaseSortie() {
 	if (!sortie) {
 		int nombre_aleatoire_x;
 		int nombre_aleatoire_y;
 
-		do { //L'emplacement de la case de sortie est aleatoire
+		do { // L'emplacement de la case de sortie est aleatoire.
 			nombre_aleatoire_x = rand() % (NBLIGNES)+1;
 			nombre_aleatoire_y = rand() % (NBCOLONNES)+1;
 		} while (!CaseLibre(nombre_aleatoire_y, nombre_aleatoire_x));
 
-		Matrice[nombre_aleatoire_x][nombre_aleatoire_y] = '3';//on definit l'emplacement dans la matrice;
+		Matrice[nombre_aleatoire_x][nombre_aleatoire_y] = '3';//on definit l'emplacement dans la matrice.
 		sortie = true;
 	}
 }
@@ -271,7 +270,7 @@ void Game::AfficherCommandes() {
 	AfficherTexture(10, false);
 }
 
-//Test si l'on peut aller dans la case x,y
+//Test si l'on peut aller dans la case x,y.
 bool Game::CaseLibre(int x, int y) //ligne colonne
 {
 	if (x < 0 || x > 31 || y < 0 || y > 28) return false; // case inexistante.
@@ -282,7 +281,7 @@ bool Game::CaseLibre(int x, int y) //ligne colonne
 	else return false;
 }
 
-//Met a jour le score et la matrice lorsqu'on mange des pacgomme
+//Met a jour le score et la matrice lorsqu'on mange des pacgomme.
 void Game::CaseManger(int x, int y) {
 
 	if (Matrice[x][y] == '8') {
@@ -311,9 +310,9 @@ void Game::perdu()
 				joueur_lose = true; // le joueur a perdu.
 			}
 			else {
-				pacman.setNbVies(pacman.getNbVies() - 1 ); //le joueur perd une vie.
+				pacman.setNbVies(pacman.getNbVies() - 1 ); // le joueur perd une vie.
 				JouerSonPerdu();
-				resetPosition();//on replace pacman et les ennemis a leurs positions initial.
+				resetPosition();// on replace pacman et les ennemis a leurs positions initial.
 			}
 		}
 	}
@@ -321,7 +320,7 @@ void Game::perdu()
 
 		if (clyde.getX() == pacman.getX() && clyde.getY() == pacman.getY() && clyde.vivant) {
 			clyde.vivant = false;
-			//calcul du score : pacman.score += 200 + (200 * nbGhostEat)
+			//calcul du score : pacman.score += 200 + (200 * nbGhostEat).
 			pacman.setScore(pacman.getScore()+ 200 + (200 * pacman.getNbGhostEat()));		
 			pacman.setNbGhostEat_oneMore(); //incremente le nombre de fantome manges.
 			JouerSonMiamGhost();
@@ -346,7 +345,7 @@ void Game::perdu()
 		}
 	}
 
-	//Si tout les fantomes sont mange, on les ressucite.
+	//Si tout les fantomes sont manges, on les reinitialise.
 	if (!blinky.vivant && !inky.vivant && !pinky.vivant && !clyde.vivant) {
 		clyde.vivant = true;
 		clyde.setX(16); clyde.setY(12);
@@ -370,7 +369,7 @@ bool Game::pacman_gagner()
 				}
 			}
 		}
-		if (nombre_bonbon == 0) {
+		if (nombre_bonbon == 0) { //il n'y a plus de pac_gomme dans la matrice.
 			AfficheCaseSortie();			
 		}
 		return false;
@@ -383,7 +382,7 @@ bool Game::pacman_gagner()
 
 void Game::resetPosition() {
 	pacman.setPosition(13,23);
-	pacman.setDirection(4); //direction initial = vers la droite
+	pacman.setDirection(4); //direction initial = vers la droite.
 	clyde.setPosition(16, 12);
 	pinky.setPosition(15,12);
 	inky.setPosition(13, 12);

@@ -5,9 +5,8 @@
 
 class Ghost : public Personnage
 {
-	int deplacement; // 1 : A gauche, 2 : A droite, 3 : En bas, 4 : En haut
-	int deplacement_precedent=1;
-	
+	int deplacement; // 1 : A gauche, 2 : A droite, 3 : En bas, 4 : En haut.
+	int deplacement_precedent=1;	
 	std::string name;
 
 public:

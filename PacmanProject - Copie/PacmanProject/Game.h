@@ -6,16 +6,16 @@
 class Game
 {
 	//Représentation du niveau.
-	char Matrice[31][28]; //2 : cases vides, 1 : mur, 2 : pas de bille, 3 : sortie,	8 : bille speciale
+	char Matrice[31][28]; //2 : cases vides, 1 : mur, 2 : pas de pac-gommes, 3 : sortie,	8 : pac-gommes speciale.
 
-	int mode = 1; //1 : normal / 2 : special
+	int mode = 1; //1 : normal / 2 : special.
 	bool pause = true; // jeu en pause.
 	bool play = false; // permet de lancer le jeu.
 	bool joueur_win = false, joueur_lose = false;
-	bool sortie = false; // enregistre si la case de sortie est affiché ou non .
+	bool sortie = false; // enregistre si la case de sortie est affiché ou non.
 	std::string choixMatrice; // choix de l'utilisateur.
 
-public:int matriceEnCours=1;//permet dafficher la bonne texture
+public:int matriceEnCours=1;//permet dafficher la bonne texture.
 
 public:
 	Game();
@@ -37,18 +37,17 @@ public:
 	//Tests
 	bool CaseLibre(int x,int y);
 	void CaseManger(int x, int y);
-	bool pacman_gagner(); // test si le pacman a gagne
+	bool pacman_gagner(); // test si le pacman a gagne.
 	//fonctions
-	//void JouerSon(std::string songName,bool sync);
 	void JouerSonDepart();
 	void JouerSonMiamPacGomme();
 	void JouerSonMiamGhost();
 	void JouerSonPerdu();
 	void JouerSonGagner();
 	void initialiserMatrice(std::string numeroNiveau);
-	void perdu(); // test si le pacman a perdu / doit perdre des vies / ou si un fantome a ete mange
-	void resetPosition();//Replace les personnages a leurs position initiale
-	void resetGame(); //Remet toutes les valeurs initial , permet de rejouer apres avoir perdu ou gagner
+	void perdu(); // test si le pacman a perdu / doit perdre des vies / ou si un fantome a ete mange.
+	void resetPosition();//Replace les personnages a leurs position initiale.
+	void resetGame(); //Remet toutes les valeurs initial , permet de rejouer apres avoir perdu ou gagner.
 	//Getters
 	int getMode();
 	bool getPause();

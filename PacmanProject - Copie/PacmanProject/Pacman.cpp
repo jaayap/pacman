@@ -24,7 +24,7 @@ Pacman::~Pacman()
 {
 }
 
-//Getters
+// Getters.
 int Pacman::getScore()
 {
 	return this->score;
@@ -45,7 +45,7 @@ int Pacman::getDirection()
 	return this->direction;
 }
 
-//Setters
+// Setters.
 void Pacman::setScore(int score)
 {
 	this->score = score;
@@ -71,7 +71,7 @@ void Pacman::setDirection(int direction)
 	this->direction = direction;
 }
 
-//Redefinition des fonctions de deplacement
+//Redefinition des fonctions de deplacement.
 void Pacman::depGauche()
 {
 	Personnage::depGauche();
@@ -101,6 +101,7 @@ void Pacman::depBas()
 }
 
 //Fonctions pour afficher le pacman :
+//Permet de dessiner le pacman dans la bonne direction.
 void Pacman::dessiner() {
 
 	switch (direction) { // 1 : vers le haut, 2 : vers le bas, 3 : vers la gauche, 4 : vers la droite.
@@ -133,10 +134,10 @@ void Pacman::dessinerVersGauche()
 			glBindTexture(GL_TEXTURE_2D, texture[2]);
 			glBegin(GL_QUADS);
 			glColor3d(1.0, 1.0, 1.0);
-				glTexCoord2f(0.0f, 0.0f); glVertex2d(x + 1, y + 1);//top left
-				glTexCoord2f(1.0f, 0.0f); glVertex2d(x, y + 1);//bottom left	
-				glTexCoord2f(1.0f, 1.0f); glVertex2d(x, y);//bottom right	
-				glTexCoord2f(0.0f, 1.0f); glVertex2d(x + 1, y);	//top right	
+				glTexCoord2f(0.0f, 0.0f); glVertex2d( x + 1 , y + 1 );//top left
+				glTexCoord2f(1.0f, 0.0f); glVertex2d( x , y + 1 );//bottom left	
+				glTexCoord2f(1.0f, 1.0f); glVertex2d( x , y );//bottom right	
+				glTexCoord2f(0.0f, 1.0f); glVertex2d( x + 1 , y );	//top right	
 			glEnd();
 		glDisable(GL_TEXTURE_2D); 
 	glDisable(GL_BLEND);
@@ -151,10 +152,10 @@ void Pacman::dessinerVersDroite()
 			glBindTexture(GL_TEXTURE_2D, texture[2]);
 			glBegin(GL_QUADS);
 				glColor3d(1.0, 1.0, 1.0);
-				glTexCoord2f(1.0f, 0.0f); glVertex2d(x + 1, y + 1);//top left
-				glTexCoord2f(0.0f, 0.0f); glVertex2d(x, y + 1);//bottom left	
-				glTexCoord2f(0.0f, 1.0f); glVertex2d(x, y);//bottom right	
-				glTexCoord2f(1.0f, 1.0f); glVertex2d(x + 1, y);	//top right	
+				glTexCoord2f(1.0f, 0.0f); glVertex2d(x + 1 , y + 1 );//top left
+				glTexCoord2f(0.0f, 0.0f); glVertex2d(x , y + 1 );//bottom left	
+				glTexCoord2f(0.0f, 1.0f); glVertex2d(x , y);//bottom right	
+				glTexCoord2f(1.0f, 1.0f); glVertex2d(x + 1 , y );	//top right	
 			glEnd();
 			glDisable(GL_TEXTURE_2D);
 	glDisable(GL_BLEND);
@@ -169,10 +170,10 @@ void Pacman::dessinerVersBas()
 			glBindTexture(GL_TEXTURE_2D, texture[2]);
 			glBegin(GL_QUADS);
 			glColor3d(1.0, 1.0, 1.0);
-				glTexCoord2f(1.0f, 1.0f); glVertex2d(x + 1, y + 1);//top left
-				glTexCoord2f(1.0f, 0.0f); glVertex2d(x, y + 1);//bottom left	
-				glTexCoord2f(0.0f, 0.0f); glVertex2d(x, y);//bottom right	
-				glTexCoord2f(0.0f, 1.0f); glVertex2d(x + 1, y);	//top right	
+				glTexCoord2f(1.0f, 1.0f); glVertex2d(x + 1 , y + 1 );//top left
+				glTexCoord2f(1.0f, 0.0f); glVertex2d(x , y + 1 );//bottom left	
+				glTexCoord2f(0.0f, 0.0f); glVertex2d(x , y );//bottom right	
+				glTexCoord2f(0.0f, 1.0f); glVertex2d(x + 1 , y );	//top right	
 			glEnd();
 		glDisable(GL_TEXTURE_2D);
 	glDisable(GL_BLEND);
@@ -187,10 +188,10 @@ void Pacman::dessinerVersBasBis()
 			glBindTexture(GL_TEXTURE_2D, texture[2]);
 			glBegin(GL_QUADS);
 			glColor3d(1.0, 1.0, 1.0);
-			glTexCoord2f(1.0f, 0.0f); glVertex2d(x + 1, y + 1);//top left
-			glTexCoord2f(1.0f, 1.0f); glVertex2d(x, y + 1);//bottom left	
-			glTexCoord2f(0.0f, 1.0f); glVertex2d(x, y);//bottom right	
-			glTexCoord2f(0.0f, 0.0f); glVertex2d(x + 1, y);	//top right	
+			glTexCoord2f(1.0f, 0.0f); glVertex2d(x + 1 , y + 1 );//top left
+			glTexCoord2f(1.0f, 1.0f); glVertex2d(x , y + 1 );//bottom left	
+			glTexCoord2f(0.0f, 1.0f); glVertex2d(x , y );//bottom right	
+			glTexCoord2f(0.0f, 0.0f); glVertex2d(x + 1 , y );	//top right	
 			glEnd();
 		glDisable(GL_TEXTURE_2D);
 	glDisable(GL_BLEND);
@@ -205,10 +206,10 @@ void Pacman::dessinerVersHaut()
 	glBindTexture(GL_TEXTURE_2D, texture[2]);
 	glBegin(GL_QUADS);
 	glColor3d(1.0, 1.0, 1.0);
-	glTexCoord2f(0.0f, 0.0f); glVertex2d(x + 1, y + 1);//top left
-	glTexCoord2f(0.0f, 1.0f); glVertex2d(x, y + 1);//bottom left	
-	glTexCoord2f(1.0f, 1.0f); glVertex2d(x, y);//bottom right	
-	glTexCoord2f(1.0f, 0.0f); glVertex2d(x + 1, y);	//top right	
+	glTexCoord2f(0.0f, 0.0f); glVertex2d(x + 1 , y + 1 );//top left
+	glTexCoord2f(0.0f, 1.0f); glVertex2d(x , y + 1 );//bottom left	
+	glTexCoord2f(1.0f, 1.0f); glVertex2d(x , y );//bottom right	
+	glTexCoord2f(1.0f, 0.0f); glVertex2d(x + 1 , y );	//top right	
 	glEnd();
 	glDisable(GL_TEXTURE_2D);
 	glDisable(GL_BLEND);
@@ -223,10 +224,10 @@ void Pacman::dessinerVersHautBis()
 	glBindTexture(GL_TEXTURE_2D, texture[2]);
 	glBegin(GL_QUADS);
 	glColor3d(1.0, 1.0, 1.0);
-	glTexCoord2f(0.0f, 1.0f); glVertex2d(x + 1, y + 1);//top left
-	glTexCoord2f(0.0f, 0.0f); glVertex2d(x, y + 1);//bottom left	
-	glTexCoord2f(1.0f, 0.0f); glVertex2d(x, y);//bottom right	
-	glTexCoord2f(1.0f, 1.0f); glVertex2d(x + 1, y);	//top right	
+	glTexCoord2f(0.0f, 1.0f); glVertex2d(x + 1 , y + 1 );//top left
+	glTexCoord2f(0.0f, 0.0f); glVertex2d(x , y + 1 );//bottom left	
+	glTexCoord2f(1.0f, 0.0f); glVertex2d(x , y );//bottom right	
+	glTexCoord2f(1.0f, 1.0f); glVertex2d(x + 1 , y );	//top right	
 	glEnd();
 	glDisable(GL_TEXTURE_2D);
 	glDisable(GL_BLEND);

@@ -25,7 +25,7 @@ Ghost::~Ghost()
 }
 
 
-
+// Setter.
 void Ghost::setX(int x)
 {
 	this->x = x;
@@ -36,6 +36,7 @@ void Ghost::setY(int y)
 	this->y = y;
 }
 
+// Fonction d'affichage.
 void Ghost::dessiner()
 {
 	if (vivant) {
@@ -44,7 +45,7 @@ void Ghost::dessiner()
 				glEnable(GL_TEXTURE_2D);
 				glBindTexture(GL_TEXTURE_2D, texture[3]);
 				glBegin(GL_QUADS);
-				glColor3d(1.0, 1.0, 1.0);//important
+				glColor3d(1.0, 1.0, 1.0);
 				glTexCoord2f(0.0f, 0.0f); glVertex2d(x + 1, y + 1);//top left
 				glTexCoord2f(1.0f, 0.0f); glVertex2d(x, y + 1);//bottom left	
 				glTexCoord2f(1.0f, 1.0f); glVertex2d(x, y);//bottom right	
@@ -56,7 +57,7 @@ void Ghost::dessiner()
 				glEnable(GL_TEXTURE_2D);
 				glBindTexture(GL_TEXTURE_2D, texture[4]);
 				glBegin(GL_QUADS);
-				glColor3d(1.0, 1.0, 1.0);//important
+				glColor3d(1.0, 1.0, 1.0);
 				glTexCoord2f(0.0f, 0.0f); glVertex2d(x + 1, y + 1);//top left
 				glTexCoord2f(1.0f, 0.0f); glVertex2d(x, y + 1);//bottom left	
 				glTexCoord2f(1.0f, 1.0f); glVertex2d(x, y);//bottom right	
@@ -68,7 +69,7 @@ void Ghost::dessiner()
 				glEnable(GL_TEXTURE_2D);
 				glBindTexture(GL_TEXTURE_2D, texture[5]);
 				glBegin(GL_QUADS);
-				glColor3d(1.0, 1.0, 1.0);//important
+				glColor3d(1.0, 1.0, 1.0);
 				glTexCoord2f(0.0f, 0.0f); glVertex2d(x + 1, y + 1);//top left
 				glTexCoord2f(1.0f, 0.0f); glVertex2d(x, y + 1);//bottom left	
 				glTexCoord2f(1.0f, 1.0f); glVertex2d(x, y);//bottom right	
@@ -80,7 +81,7 @@ void Ghost::dessiner()
 				glEnable(GL_TEXTURE_2D);
 				glBindTexture(GL_TEXTURE_2D, texture[6]);
 				glBegin(GL_QUADS);
-				glColor3d(1.0, 1.0, 1.0);//important
+				glColor3d(1.0, 1.0, 1.0);
 				glTexCoord2f(0.0f, 0.0f); glVertex2d(x + 1, y + 1);//top left
 				glTexCoord2f(1.0f, 0.0f); glVertex2d(x, y + 1);//bottom left	
 				glTexCoord2f(1.0f, 1.0f); glVertex2d(x, y);//bottom right	
@@ -93,7 +94,7 @@ void Ghost::dessiner()
 			glEnable(GL_TEXTURE_2D);
 			glBindTexture(GL_TEXTURE_2D, texture[1]);
 			glBegin(GL_QUADS);
-			glColor3d(1.0, 1.0, 1.0);//important
+			glColor3d(1.0, 1.0, 1.0);
 			glTexCoord2f(0.0f, 0.0f); glVertex2d(x + 1, y + 1);//top left
 			glTexCoord2f(1.0f, 0.0f); glVertex2d(x, y + 1);//bottom left	
 			glTexCoord2f(1.0f, 1.0f); glVertex2d(x, y);//bottom right	
@@ -102,15 +103,10 @@ void Ghost::dessiner()
 			glDisable(GL_TEXTURE_2D);
 		}
 	}
-
-
 }
 
-void Ghost::CalculDeplacement()// 1 : A gauche, 2 : A droite, 3 : En bas, 4 : En haut
+void Ghost::CalculDeplacement()// 1 : A gauche, 2 : A droite, 3 : En bas, 4 : En haut.
 {
-	//srand((unsigned)time(0));
-	//cout << rand() % (4 - 2) + 2;
-
 	//GAUCHE
 	if (deplacement_precedent == 1) {
 
@@ -249,7 +245,7 @@ void Ghost::Deplacer() {
 		}
 	}
 
-	game.perdu(); //on verifie si le fantome a rencontrer le pacman
-	glutPostRedisplay();//important
+	game.perdu(); //on verifie si le fantome a rencontrer le pacman/
+	glutPostRedisplay();
 }
 

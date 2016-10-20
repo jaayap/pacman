@@ -18,7 +18,7 @@ Personnage::~Personnage()
 {
 }
 
-//Getters
+// Getters.
 int Personnage::getX() {
 	return this->x;
 }
@@ -27,7 +27,7 @@ int Personnage::getY() {
 	return this->y;
 }
 
-//Setter
+// Setter.
 void Personnage::setX(int x) {
 	this->x = x;
 }
@@ -41,11 +41,11 @@ void Personnage::setPosition(int x, int y) {
 	this->y = y;
 }
 
-//Deplacements 
+// Deplacements.
 void Personnage::depGauche()
 {
 	if (this->x == 0 && this->y == 14) this->x = 27; // teleportation
-	else if (game.CaseLibre(this->y, this->x - 1))  x--;
+	else if (game.CaseLibre(this->y, this->x - 1)) this->x--;
 }
 
 void Personnage::depDroite()
@@ -62,5 +62,4 @@ void Personnage::depHaut()
 void Personnage::depBas()
 {
 	if (game.CaseLibre(this->y+1, this->x)) this->y = this->y + 1;
-	
 }

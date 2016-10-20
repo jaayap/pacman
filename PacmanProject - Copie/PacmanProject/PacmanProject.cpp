@@ -1,4 +1,4 @@
-// PacmanProject.cpp : définit le point d'entrée pour l'application console.
+// PacmanProject.cpp : définit le point d'entrée de l'application.
 #include "stdafx.h"
 #include "GL/glut.h"
 #include "SOIL/SOIL.h"
@@ -14,17 +14,19 @@ using namespace std;
 #define NBLIGNES 31
 #define NBCOLONNES 28
 
-int HAUTEUR_FENETRE = 1920;
-int LARGEUR_FENETRE = 1024;
-
 //variables globales
-vector<GLuint>	texture; // tableau qui contient nos textures
-Game game; // Classe qui definit le niveau : matrice, affichage du niveau
+int HAUTEUR_FENETRE = 1920; //valeur qui se modifie lorqu'on redimmensionne la fenetre.
+int LARGEUR_FENETRE = 1024;
+vector<GLuint>	texture; // tableau qui contient nos textures.
+Game game; // Classe qui definit le niveau : matrice, affichage du niveau.
+
+//Personnages du jeu :
 Pacman pacman(13,23);
 Ghost clyde(16, 12, "clyde");
 Ghost pinky(15, 12, "pinky");
 Ghost inky(13, 12, "inky");
 Ghost blinky(12, 12, "blinky");
+
 bool AfficherChoixNiveau = false;
 bool voirCommande = false;
 
@@ -37,19 +39,20 @@ void TraitementClavier(int key, int x, int y);
 void TraitementClavierASCII(unsigned char key, int x, int y);
 int LoadGLTextures(string name);
 
-//Fonction Main
-void main(void)
+
+void main(void) //Fonction qui lance l'application.
 {
-	srand((unsigned)time(0));
-	// Gestion de la fenêtre
+	srand((unsigned)time(0)); //initialisation pour les nombres aléatoires.
+
+	// Gestion de la fenêtre.
 	glutInitWindowPosition(10, 10);
 	glutInitWindowSize(HAUTEUR_FENETRE, LARGEUR_FENETRE);
 	glutInitDisplayMode(GLUT_RGBA | GLUT_SINGLE);
 	glutCreateWindow("Pacman Game");
-	//glutIgnoreKeyRepeat(1);
-	//glutFullScreen();
+	//glutIgnoreKeyRepeat(1); //empeche l'utilisateur de rester appuyer sur une touche.
+	//glutFullScreen(); //oblige l'utilisateur a etre en plein ecran.
 
-	
+	// Gestion des evenements.
 	glutDisplayFunc(LabyAffichage);
 	glutReshapeFunc(LabyRedim);
 	glutKeyboardFunc(TraitementClavierASCII);
@@ -58,7 +61,7 @@ void main(void)
 	glutTimerFunc(500, LabyTimerFantome, 0);
 	glutTimerFunc(500, LabyTimerMode, 0);
 
-	//chargement des textures
+	// Chargement des textures.
 	LoadGLTextures("image/PacmanLevel-1.png");// 0
 	LoadGLTextures("image/fantome.png");	  // 1
 	LoadGLTextures("image/pacman.png");	      // 2
@@ -75,71 +78,77 @@ void main(void)
 	LoadGLTextures("image/menu.png");         // 13
 	LoadGLTextures("image/PacmanLevel-2.png");// 14
 	LoadGLTextures("image/Case_Sortie.png");  // 15
+
+	//Lancement de la boucle glut.
 	glutMainLoop();
 }
 
-// Evénement d'affichage
+// Evénement d'affichage.
 void LabyAffichage()
 {
 	glClearColor(1.0, 1.0, 1.0, 1.0);
 	glClear(GL_COLOR_BUFFER_BIT);
 	glMatrixMode(GL_MODELVIEW);
 
-	//VIEWPORT 1 : Fond d'ecran
+	//VIEWPORT 1 : Fond d'ecran.
 	glViewport(0, 0, LARGEUR_FENETRE, HAUTEUR_FENETRE);
 	glLoadIdentity();
 	game.AfficherFond();
 
 	if (game.getPlay()) {
-		//VIEWPORT : comporte le score
+		//VIEWPORT : comporte le score.
 		glViewport(LARGEUR_FENETRE*0.28, HAUTEUR_FENETRE * 0.97, LARGEUR_FENETRE * 0.44, HAUTEUR_FENETRE *0.15);
 		glLoadIdentity();
 		game.AfficherScore();
 
-		//VIEWPORT : comporte les vies
+		//VIEWPORT : comporte les vies.
 		for (int i = 0; i < pacman.getNbVies(); i++) {
 			glViewport(LARGEUR_FENETRE*0.65 + i * LARGEUR_FENETRE*0.02, HAUTEUR_FENETRE * 0.97, LARGEUR_FENETRE * 0.02, HAUTEUR_FENETRE *0.03); //pour 2 vies
 			glLoadIdentity();
 			game.AfficherVies();
 		}
 
-		//VIEWPORT : Comporte le niveau
+		//VIEWPORT : Comporte le niveau.
 		glViewport(LARGEUR_FENETRE *0.28, 0, LARGEUR_FENETRE * 0.44, HAUTEUR_FENETRE *0.95);
 		glLoadIdentity();
 
-		game.DessinerNiveau(); // Affiche le niveau
-		game.DessinerPerso(); // Affiche les personnages
+		game.DessinerNiveau(); // Affiche le niveau.
+		game.DessinerPerso(); // Affiche les personnages.
 	}
 	else if (!game.getJoueurLose() && !game.getJoueurWin() && !AfficherChoixNiveau) {
-		//Afficher Menu
+		//Afficher Menu.
 		glViewport(LARGEUR_FENETRE *0.28, 0, LARGEUR_FENETRE *0.44, HAUTEUR_FENETRE *0.95);
 		glLoadIdentity();
 		game.AfficherMenu();
 	}
 	else {
 		if (!voirCommande) {
-			//Afficher choix du niveau
+			//Afficher choix du niveau.
 			glViewport(LARGEUR_FENETRE *0.28, 0, LARGEUR_FENETRE *0.44, HAUTEUR_FENETRE *0.95);
 			glLoadIdentity();
 			game.AfficherChoixNiveau();
 		}
 		else {
+			//Affiche les commandes.
 			glViewport(LARGEUR_FENETRE *0.28, 0, LARGEUR_FENETRE *0.44, HAUTEUR_FENETRE *0.95);
 			glLoadIdentity();
 			game.AfficherCommandes();
 		}
 	}
 
+	//Afficher ecran de pause.
 	if (game.getPause() && game.getPlay()) {
 		game.AfficherEcranPause();
 	}
 
+	//Afficher ecran perdu.
 	if (game.getJoueurLose()) {
 		glViewport(LARGEUR_FENETRE*0.28, 0, LARGEUR_FENETRE *0.44, HAUTEUR_FENETRE *0.95);
 		glLoadIdentity();
 		game.AfficherEcranGameOver();
 	}
 
+	//Afficher ecran gagne.
 	if(game.getJoueurWin()) 
 	{
 		glViewport(LARGEUR_FENETRE*0.28, 0, LARGEUR_FENETRE *0.44, HAUTEUR_FENETRE *0.95);
@@ -147,7 +156,7 @@ void LabyAffichage()
 		game.AfficherEcranVictoire();
 	}
 
-	//on regarde si on est en mode special, si oui, on relance le timer
+	//on regarde si on est en mode special, si oui, on relance le timer.
 	if (game.getMode() == 2) {
 		glutTimerFunc(12000, LabyTimerMode, 0);
 	}
@@ -155,7 +164,7 @@ void LabyAffichage()
 	glFlush();
 }
 
-// Evénement de redimensionnement
+// Evénement de redimensionnement.
 void LabyRedim(int width, int height)
 {
 	glViewport(0, 0, width, height);
@@ -167,7 +176,7 @@ void LabyRedim(int width, int height)
 	
 }
 
-//Gestion des entrees clavier
+// Gestion des entrees clavier.
 void TraitementClavier(int key, int x, int y) {
 	glutPostRedisplay();
 
@@ -186,8 +195,8 @@ void TraitementClavier(int key, int x, int y) {
 		}
 	}
 	
-	//Verification apres le deplacement
-	game.perdu();//on verifie si l'on a perdu ou non
+	//Verification apres le deplacement.
+	game.perdu();//on verifie si l'on a perdu ou non.
 
 	if (game.pacman_gagner()) {
 		game.AfficherEcranVictoire();
@@ -267,7 +276,7 @@ int LoadGLTextures(string name) //Charge l'image et la convertit en texture
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
-	return true;  // Return Success
+	return true;  // Return Success.
 }
 
 void LabyTimerFantome(int z) {
@@ -286,5 +295,5 @@ void LabyTimerFantome(int z) {
 }
 
 void LabyTimerMode(int z) {
-	game.setMode(1); //on revient au mode normal
+	game.setMode(1); //on revient au mode normal.
 }

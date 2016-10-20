@@ -1,8 +1,8 @@
 #pragma once
 class Personnage
 {
-	public: int x, y; //Position
-	public: bool vivant=true;
+	protected: int x, y; //Position dans la matrice.
+	public :   bool vivant=true;//true : le personnage est vivant; false : le personnage est mort.
 
 public:
 	Personnage(int xDepart, int yDepart);
